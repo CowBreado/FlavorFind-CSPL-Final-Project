@@ -1,78 +1,82 @@
 ﻿using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
-using CS2ARonaldAbel_MVCPROJECT.BusLogic.Model;
+using System.Threading.Tasks;
+using FlavorFind.BusLogic.Model;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Markdig;
 
-public class RecipeController : Controller
+namespace FlavorFind.Controllers
 {
-    private static readonly HttpClient client = new HttpClient();
-
-    [HttpGet]
-    public ActionResult Index()
+    public class RecipeController : Controller
     {
-        return View();
-    }
+        private static readonly HttpClient client = new HttpClient();
 
-    [HttpPost]
-    public async Task<ActionResult> Index(RecipeRequest model)
-    {
-        string prompt = $"You are a recipe assistant. The user has a budget of {model.Budget}, available ingredients: {model.Ingredients}, and preferences: {model.Preferences}. " +
-                        $"The recipe should be for a {model.DishType} dish intended for {model.MealTime}. " +
-                        $"Recommend 1–2 simple recipes with estimated cost and easy-to-follow instructions.";
-
-        string rawResponse = await CallGroqLLM(prompt); // Assuming CallGroqLLM returns a string
-
-        var pipeline = new MarkdownPipelineBuilder()
-                            .UseAdvancedExtensions()
-                            .Build();
-
-        string htmlResponse = Markdown.ToHtml(rawResponse ?? string.Empty, pipeline); 
-        var recipeViewModel = new RecipeResponse
+        [HttpGet]
+        public ActionResult Index()
         {
-            Reply = rawResponse,
-            ReplyHtml = htmlResponse
-        };
+            return View();
+        }
 
-        return View("Result", recipeViewModel);
-    }
-
-    private async Task<string> CallGroqLLM(string prompt)
-    {
-        var apiKey = "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";
-
-        var requestBody = new
+        [HttpPost]
+        public async Task<ActionResult> Index(RecipeRequest model)
         {
-            model = "llama-3.3-70b-versatile",
-            messages = new[]
+            string prompt = $"You are a recipe assistant. The user has a budget of {model.Budget}, available ingredients: {model.Ingredients}, and preferences: {model.Preferences}. " +
+                            $"The recipe should be for a {model.DishType} dish intended for {model.MealTime}. " +
+                            $"Recommend 1–2 simple recipes with estimated cost and easy-to-follow instructions.";
+
+            string rawResponse = await CallGroqLLM(prompt);
+
+            var pipeline = new MarkdownPipelineBuilder()
+                                .UseAdvancedExtensions()
+                                .Build();
+
+            string htmlResponse = Markdown.ToHtml(rawResponse ?? string.Empty, pipeline);
+
+            var recipeViewModel = new RecipeResponse
             {
-            new { role = "system", content = "You are a helpful recipe assistant." },
-            new { role = "user", content = prompt }
+                Reply = rawResponse,
+                ReplyHtml = htmlResponse
+            };
+
+            return View("Result", recipeViewModel);
         }
-        };
 
-        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", apiKey);
-        var content = new StringContent(JsonConvert.SerializeObject(requestBody), Encoding.UTF8, "application/json");
-
-        var httpResponse = await client.PostAsync("https://api.groq.com/openai/v1/chat/completions", content);
-
-        if (!httpResponse.IsSuccessStatusCode)
+        private async Task<string> CallGroqLLM(string prompt)
         {
-            var errorContent = await httpResponse.Content.ReadAsStringAsync();
-            return $"Error: {httpResponse.StatusCode} - {errorContent}";
+            var apiKey = "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";
+
+            var requestBody = new
+            {
+                model = "llama-3.3-70b-versatile",
+                messages = new[]
+                {
+                    new { role = "system", content = "You are a helpful recipe assistant." },
+                    new { role = "user", content = prompt }
+                }
+            };
+
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", apiKey);
+            var content = new StringContent(JsonConvert.SerializeObject(requestBody), Encoding.UTF8, "application/json");
+
+            var httpResponse = await client.PostAsync("https://api.groq.com/openai/v1/chat/completions", content);
+
+            if (!httpResponse.IsSuccessStatusCode)
+            {
+                var errorContent = await httpResponse.Content.ReadAsStringAsync();
+                return $"Error: {httpResponse.StatusCode} - {errorContent}";
+            }
+
+            var jsonString = await httpResponse.Content.ReadAsStringAsync();
+            dynamic json = JsonConvert.DeserializeObject(jsonString);
+
+            if (json == null || json.choices == null || json.choices.Count == 0)
+            {
+                return "The response did not contain the expected data.";
+            }
+
+            return json.choices[0].message.content;
         }
-
-        var jsonString = await httpResponse.Content.ReadAsStringAsync();
-
-        dynamic json = JsonConvert.DeserializeObject(jsonString);
-
-        if (json == null || json.choices == null || json.choices.Count == 0)
-        {
-            return "The response did not contain the expected data.";
-        }
-        return json.choices[0].message.content;
     }
-
 }

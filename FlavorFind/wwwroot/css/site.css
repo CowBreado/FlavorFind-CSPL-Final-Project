@@ -1,6 +1,7 @@
 body {
     background-color: #111;
     color: #fff;
+    font-family: 'Segoe UI', sans-serif;
 }
 
 .sidebar {
@@ -16,6 +17,8 @@ body {
         font-size: 24px;
         margin: 20px 0;
         padding: 10px 0;
+        color: #fff;
+        text-align: center;
     }
 
         .sidebar .nav-link:hover {
@@ -27,3 +30,32 @@ body {
     margin-left: 80px;
     padding-top: 30px;
 }
+
+/* FlavorBot Form Styling */
+.form-label {
+    color: #fff;
+}
+
+textarea::placeholder,
+input::placeholder,
+select {
+    color: #ccc !important;
+}
+
+.form-control,
+.form-select {
+    background-color: #1e1e1e;
+    border: 1px solid #444;
+    color: #fff;
+}
+
+.btn-warning {
+    background-color: #f39c12;
+    border: none;
+    color: black;
+    font-weight: bold;
+}
+
+    .btn-warning:hover {
+        background-color: #e67e22;
+    }
