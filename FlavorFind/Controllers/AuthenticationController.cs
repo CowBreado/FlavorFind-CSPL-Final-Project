@@ -10,9 +10,20 @@ namespace FlavorFind.Controllers
         {
             return View();
         }
-
         public IActionResult Login()
         {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Login(string email, string password)
+        {
+            if (email == "admin@example.com" && password == "1234")
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            ViewBag.Error = "Invalid credentials.";
             return View();
         }
     }

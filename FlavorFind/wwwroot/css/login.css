@@ -1,0 +1,59 @@
+body {
+    background-color: #121212;
+    font-family: Arial, sans-serif;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.login-container {
+    width: 280px;
+}
+
+.input-field {
+    width: 100%;
+    padding: 12px;
+    background-color: #1e1e1e;
+    border: none;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    color: white;
+    font-size: 14px;
+}
+
+.password-wrapper {
+    position: relative;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 12px;
+    top: 12px;
+    cursor: pointer;
+    color: gray;
+}
+
+.forgot {
+    text-align: right;
+    margin-bottom: 15px;
+}
+
+.forgot a {
+    color: lightgray;
+    text-decoration: none;
+    font-size: 12px;
+}
+
+.login-button {
+    width: 100%;
+    padding: 12px;
+    background-color: #aaaaaa;
+    color: black;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+}
