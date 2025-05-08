@@ -15,6 +15,11 @@ namespace FlavorFind.Controllers
             return View();
         }
 
+        public IActionResult Register()
+        {
+            return View();
+        }
+
         [HttpPost]
         public IActionResult Login(string email, string password)
         {
