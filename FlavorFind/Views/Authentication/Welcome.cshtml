@@ -1,0 +1,155 @@
+﻿@{
+    ViewData["Title"] = "Authentication";
+}
+
+<style>
+    body {
+        background-color: #121212; /* Dark background */
+        color: white;
+        font-family: sans-serif;
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .container {
+        display: flex;
+        justify-content: space-around; /* Adjust as needed */
+        align-items: center;
+        width: 80%; /* Adjust as needed */
+        max-width: 1200px; /* Adjust as needed */
+    }
+
+    .logo-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-right: 50px; /* Space between logo and text/buttons */
+    }
+
+    .logo {
+        /* Assuming your logo is an SVG or image */
+        /* You'll need to replace 'logo.svg' with the actual path to your logo */
+        width: 150px; /* Adjust as needed */
+        height: auto;
+        /* If you have separate parts for the logo like in the image: */
+        position: relative; /* To allow absolute positioning of parts if needed */
+    }
+
+    /* Styles for the "F" part of the logo */
+    .logo-f {
+        width: 80px; /* Adjust as needed */
+        height: 120px; /* Adjust as needed */
+        background-color: #D8352A; /* Red color */
+        position: relative;
+        /* A simple way to create the "F" shape.
+           More complex shapes might need SVG or multiple divs. */
+    }
+
+    .logo-f::before { /* Top bar of F */
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 30px; /* Adjust as needed */
+        background-color: #D8352A;
+    }
+
+    .logo-f::after { /* Middle bar of F */
+        content: "";
+        position: absolute;
+        top: 45px; /* Adjust as needed ( (120/2) - (30/2) ) */
+        left: 0;
+        width: 70%; /* Adjust as needed */
+        height: 30px; /* Adjust as needed */
+        background-color: #D8352A;
+    }
+
+
+    /* Styles for the square part of the logo */
+    .logo-square {
+        width: 80px; /* Adjust as needed */
+        height: 80px; /* Adjust as needed */
+        background-color: #F5A623; /* Orange/Yellow color */
+        position: absolute;
+        top: 20px; /* Adjust to position overlapping the F */
+        left: 40px; /* Adjust to position overlapping the F */
+        z-index: -1; /* Send it behind the F */
+    }
+
+
+    .logo-text {
+        font-size: 24px; /* Adjust as needed */
+        font-weight: bold;
+        margin-top: 10px; /* Space between logo image and text */
+        color: #FFFFFF;
+    }
+
+    .tagline-section {
+        text-align: left;
+    }
+
+    .tagline {
+        font-size: 36px; /* Adjust as needed */
+        font-weight: bold;
+        margin-bottom: 30px; /* Space between tagline and buttons */
+        line-height: 1.3;
+    }
+
+    .btn {
+        display: block;
+        width: 250px; /* Adjust as needed */
+        padding: 15px;
+        margin-bottom: 15px; /* Space between buttons */
+        border: none;
+        border-radius: 5px;
+        font-size: 18px;
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none; /* For anchor tags */
+    }
+
+    .btn-login {
+        background-color: #333333; /* Dark grey */
+        color: white;
+    }
+
+    .btn-register {
+        background-color: transparent;
+        color: white;
+        border: 2px solid #F5A623; /* Orange/Yellow border */
+    }
+
+    .btn-login:hover {
+        background-color: #444444;
+    }
+
+    .btn-register:hover {
+        background-color: rgba(245, 166, 35, 0.1); /* Slight orange/yellow tint on hover */
+    }
+
+</style>
+
+<div class="container">
+    <div class="logo-section">
+        <div style="display: flex; align-items: flex-end; margin-bottom: 10px;">
+            <div style="width: 50px; height: 120px; background-color: #D8352A; position: relative; z-index: 1;">
+                <div style="width: 100%; height: 30px; background-color: #D8352A; position: absolute; top: 0; left: 0;"></div>
+                <div style="width: 70%; height: 30px; background-color: #D8352A; position: absolute; top: 45px; left: 0;"></div>
+            </div>
+            <div style="width: 70px; height: 70px; background-color: #F5A623; margin-left: -30px; margin-bottom:5px;"></div>
+        </div>
+        <div class="logo-text">FlavorFind</div>
+    </div>
+
+    <div class="tagline-section">
+        <div class="tagline">
+            Nomadic. Nostalgic.<br>New.
+        </div>
+        <a href="#" class="btn btn-login">Login</a>
+        <a href="#" class="btn btn-register">Register</a>
+        </div>
+</div>
