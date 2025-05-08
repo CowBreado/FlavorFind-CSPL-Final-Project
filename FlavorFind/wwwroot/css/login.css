@@ -14,14 +14,15 @@ body {
 }
 
 .input-field {
-    width: 100%;
-    padding: 12px;
+    width: 370px;
+    height: 28px;
+    padding: 12px 30px;
     background-color: #1e1e1e;
     border: none;
     border-radius: 8px;
     margin-bottom: 10px;
     color: white;
-    font-size: 14px;
+    font-size: 17px;
 }
 
 .password-wrapper {
@@ -39,21 +40,26 @@ body {
 .forgot {
     text-align: right;
     margin-bottom: 15px;
+    width: 426px;
 }
 
 .forgot a {
     color: lightgray;
     text-decoration: none;
-    font-size: 12px;
+    font-size: 15px;
 }
 
 .login-button {
-    width: 100%;
-    padding: 12px;
-    background-color: #aaaaaa;
-    color: black;
+    display: block;
+    width: 430px;
+    padding: 15px;
+    margin-bottom: 15px;
     border: none;
-    border-radius: 8px;
-    font-weight: bold;
+    border-radius: 5px;
+    font-size: 18px;
     cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    background-color: #3B3B3B;
+    color: #fff;
 }
