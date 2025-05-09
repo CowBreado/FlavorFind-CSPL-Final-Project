@@ -45,7 +45,7 @@ namespace FlavorFind.Controllers
 
         private async Task<string> CallGroqLLM(string prompt)
         {
-            var apiKey = "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";
+            var apiKey = "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";
 
             var requestBody = new
             {

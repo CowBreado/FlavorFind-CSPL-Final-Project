@@ -7,20 +7,42 @@
 
 <link rel="stylesheet" href="~/css/recipe-feed.css" />
 <div class="container">
-        @if (Model != null && Model.Any())
+    <h2>My Recipes</h2>
+    @if (Model != null && Model.Any())
+    {
+        foreach (var recipe in Model)
         {
-            foreach (var recipe in Model)
-            {
-                <div class="recipe-card">
-                    <h3>@recipe.Name</h3>
-                    <p>@recipe.Category</p>
-                    <p>@recipe.Description</p>
-                    <a asp-action="Details" asp-route-id="@recipe.Id" class="btn btn-primary">View Details</a>
-                </div>
-            }
+            <div class="recipe-card">
+                <h3>@recipe.Name</h3>
+                <p>@recipe.Category</p>
+                <p>@recipe.Description</p>
+                <a asp-action="Details" asp-route-id="@recipe.Id" class="btn btn-primary">View Details</a>
+            </div>
         }
-        else
-        {
-            <p>No recipes found.</p>
-        }
+    }
+    else
+    {
+        <p>No recipes found.</p>
+    }
 </div>
+<style>
+    .container {
+        width: 600px;
+        border-radius: 24px;
+        overflow: hidden;
+        background-color: #262626;
+        margin-top: 40px;
+        padding: 0;
+    }
+
+    .recipe-card {
+        width: 100%;
+        padding: 30px;
+        border-bottom: 1px solid #888;
+    }
+
+    h2 {
+        padding: 30px;
+        border-bottom: 1px solid #888;
+    }
+</style>
