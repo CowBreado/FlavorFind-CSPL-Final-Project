@@ -12,7 +12,7 @@ namespace CS2ARonaldAbel_MVCPROJECT.BusLogic.Respository
     {
         IDbConnection _connection;
 
-        readonly string connectionString = "Server=tastefind-sql-server.database.windows.net; Database=Student_DB; User ID=ronald2117; Password=DlanorLeba7112; MultipleActiveResultSets=true;";
+        readonly string connectionString = "Server=DESKTOP-T92MA16\\SQLEXPRESS; Trusted_Connection=True";
 
         public GenericRepository()
         {
