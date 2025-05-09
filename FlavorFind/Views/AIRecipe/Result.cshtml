@@ -1,18 +1,18 @@
 ﻿@model FlavorFind.BusLogic.Model.RecipeResponse
 @{
     ViewData["Title"] = "FlavorBot Result";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <link rel="stylesheet" href="~/css/recipe-style.css" asp-append-version="true" />
 
 <div class="container d-flex flex-column align-items-center mt-5">
     <div class="text-center mb-4">
-        <img src="~/images/flavorbot-logo.png" alt="FlavorBot" style="width: 100px;" />
-        <h2 class="text-white mt-2">Flavor<span class="text-danger">Bot</span></h2>
-        <h5 class="text-light">You could go for...</h5>
+        <img src="~/images/flavorbot-logo-with-text.svg" alt="FlavorBot" style="width: 250px;" />
     </div>
 
     <div class="recipe-content w-100" style="max-width: 900px;">
+        <h2 class="text-light">You could go for...</h2>
         @Html.Raw(Model.ReplyHtml)
     </div>
 
