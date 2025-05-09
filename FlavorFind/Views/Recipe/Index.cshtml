@@ -1,5 +1,8 @@
 ﻿@model IEnumerable<FlavorFind.BusLogic.Model.Recipe>
-
+@{
+    ViewData["Title"] = "Home";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 <h2>Recipes</h2>
 <a asp-action="Create" class="btn btn-primary">Add New Recipe</a>
 
