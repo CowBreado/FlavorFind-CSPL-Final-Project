@@ -1,0 +1,84 @@
+﻿@model FlavorFind.BusLogic.Model.Recipe
+
+@{
+    ViewData["Title"] = "Edit Recipe";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="recipe-edit container">
+    <h1>Edit Recipe</h1>
+
+    <form asp-action="Edit" asp-controller="Recipe" method="post">
+        <input type="hidden" asp-for="Id" />
+
+        <div class="form-group">
+            <label asp-for="Name"></label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Category"></label>
+            <input asp-for="Category" class="form-control" />
+            <span asp-validation-for="Category" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Description"></label>
+            <textarea asp-for="Description" class="form-control" rows="3"></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Ingredients"></label>
+            <textarea asp-for="Ingredients" class="form-control" rows="4"></textarea>
+            <span asp-validation-for="Ingredients" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Instructions"></label>
+            <textarea asp-for="Instructions" class="form-control" rows="4"></textarea>
+            <span asp-validation-for="Instructions" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-success">Save Changes</button>
+        <a asp-action="Details" asp-route-id="@Model.Id" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+
+<style>
+    .recipe-edit {
+        width: 600px;
+        border-radius: 24px;
+        background-color: #111;
+        padding: 30px;
+        margin-top: 40px;
+        color: #fff;
+    }
+
+    .recipe-edit h1 {
+        margin-bottom: 20px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-control {
+        background-color: #1c1c1c;
+        color: #fff;
+        border: 1px solid #444;
+    }
+
+    .form-control:focus {
+        border-color: #28a745
+    }
+
+    .container {
+        width: 600px;
+        border-radius: 24px;
+        overflow: hidden;
+        background-color: #262626;
+        margin-top: 40px;
+        padding: 30px;
+    }
