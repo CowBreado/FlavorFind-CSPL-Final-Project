@@ -11,15 +11,14 @@
 </head>
 <body>
     <div class="d-flex" style="min-height: 100vh;">
-        <aside class="sidebar d-flex flex-column align-items-center p-3 text-white">
+        <aside class="sidebar d-flex flex-column align-items-center justify-content-between p-3 text-white">
             <img src="~/images/logo.svg" alt="Logo" class="mb-4" style="width: 40px;" />
             <nav class="nav flex-column text-center w-100">
                 <a class="nav-link text-white" asp-controller="Recipe" asp-action="Index" title="Home"><img src="~/images/home-logo.svg" alt="Logo" style="width: 46px;" /></a>
                 <a class="nav-link text-white" asp-controller="AIRecipe" asp-action="Index" title="FlavorBot"><img src="~/images/flavorbot-logo.svg" alt="Logo" style="width: 31px;" /></a>
                 <a class="nav-link text-white" asp-controller="Recipe" asp-action="Create" title="New Recipe"><img src="~/images/add-recipe-logo.svg" alt="Logo"  style="width: 46px;" /></a>
-                <a class="nav-link text-white" asp-controller="AIRecipe" asp-action="Index" title="Profile"><img src="~/images/profile-logo.svg" alt="Logo" style="width: 46px;" /></a>
-
             </nav>
+            <a class="nav-link text-white" asp-controller="Authentication" asp-action="Welcome" title="logOut"><img src="~/images/exit-outline.svg" alt="Logo" style="width: 46px;" /></a>
         </aside>
 
         <!-- Main content -->
