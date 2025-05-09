@@ -74,5 +74,15 @@ namespace FlavorFind.Controllers
             _recipeService.Delete(id);
             return RedirectToAction("Index");
         }
+
+        public IActionResult Details(int id)
+        {
+            var recipe = _recipeService.GetRecipeById(id);
+            if (recipe == null)
+            {
+                return NotFound();
+            }
+            return View(recipe);
+        }
     }
 }

@@ -1,0 +1,59 @@
+﻿@model FlavorFind.BusLogic.Model.Recipe
+
+@{
+    ViewData["Title"] = "Recipe Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="recipe-details container">
+    <h1>@Model.Name</h1>
+
+    <div class="recipe-meta">
+        <p><strong>Category:</strong> @Model.Category</p>
+        <p><strong>Created At:</strong> @Model.CreatedAt.ToString("MMMM dd, yyyy")</p>
+    </div>
+
+    <div class="recipe-description">
+        <h2>Description</h2>
+        <p>@Model.Description</p>
+    </div>
+
+    <div class="recipe-ingredients">
+        <h2>Ingredients</h2>
+        <p>@Model.Ingredients</p>
+    </div>
+
+    <div class="recipe-instructions">
+        <h2>Instructions</h2>
+        <p>@Model.Instructions</p>
+    </div>
+</div>
+
+<style>
+    .recipe-details {
+        width: 600px;
+        border-radius: 24px;
+        overflow: hidden;
+        background-color: #262626;
+        margin-top: 40px;
+        padding: 30px;
+    }
+
+    .recipe-details h1 {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .recipe-details h2 {
+        margin-top: 1.5rem;
+    }
+
+    .recipe-details p {
+        margin: 0.5rem 0;
+    }
+
+    .recipe-meta {
+        font-size: 0.9rem;
+        color: #666;
+    }
+</style>
