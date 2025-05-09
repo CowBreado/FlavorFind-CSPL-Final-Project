@@ -1,0 +1,14 @@
+.container {
+    width: 600px; 
+    border-radius: 24px; 
+    overflow: hidden;
+    background-color: #262626;
+    margin-top: 40px;
+    padding: 0;
+}
+
+.recipe-card {
+    width: 100%;
+    padding: 30px;
+    border-bottom: 1px solid white;
+}
