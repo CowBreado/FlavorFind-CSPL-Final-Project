@@ -6,13 +6,14 @@ using System.Data.SqlClient;
 using System.Reflection;
 using System.Text;
 
-namespace CS2ARonaldAbel_MVCPROJECT.BusLogic.Respository
+namespace FlavorFind.BusLogic.Respository
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
         IDbConnection _connection;
 
-        readonly string connectionString = "Server=DESKTOP-T92MA16\\SQLEXPRESS; Database=FlavorFind;";
+        readonly string connectionString = "Server=DESKTOP-T92MA16\\SQLEXPRESS; Database=FlavorFind; Trusted_Connection=True;";
+
 
         public GenericRepository()
         {
@@ -81,22 +82,18 @@ namespace CS2ARonaldAbel_MVCPROJECT.BusLogic.Respository
         }
         public IEnumerable<T> GetAll()
         {
+            IEnumerable<T> result = null;
             try
             {
                 string tableName = GetTableName();
-                Console.WriteLine($"Table Name: {tableName}");
                 string query = $"SELECT * FROM {tableName}";
 
-                var result = _connection.Query<T>(query);
-                return result ?? Enumerable.Empty<T>();
+                result = _connection.Query<T>(query);
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error in GetAll: " + ex.Message);
-                return Enumerable.Empty<T>(); // Return an empty list instead of null
-            }
-        }
+            catch (Exception ex) { }
 
+            return result;
+        }
         public T GetById(int id)
         {
 

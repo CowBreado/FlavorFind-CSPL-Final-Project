@@ -1,21 +1,23 @@
 ﻿using FlavorFind.BusLogic.Model;
-using FlavorFind.BusLogic.Respository;
+using FlavorFind.BusLogic.Service;
 using Microsoft.AspNetCore.Mvc;
+
 
 namespace FlavorFind.Controllers
 {
     public class RecipeController : Controller
     {
-        private readonly RecipeRepository _recipeRepository;
+        private readonly RecipeService _recipeService = new RecipeService();
 
         public RecipeController()
         {
-            _recipeRepository = new RecipeRepository();
+            _recipeService = new RecipeService();
         }
 
         public IActionResult Index()
         {
-            var recipes = _recipeRepository.GetAll();
+            var recipes = _recipeService.GetAllRecipes();
+            
             return View(recipes);
         }
 
@@ -29,7 +31,7 @@ namespace FlavorFind.Controllers
         {
             if (ModelState.IsValid)
             {
-                _recipeRepository.Add(recipe);
+                _recipeService.Add(recipe);
                 return RedirectToAction("Index");
             }
             return View(recipe);
@@ -37,7 +39,7 @@ namespace FlavorFind.Controllers
 
         public IActionResult Edit(int id)
         {
-            var recipe = _recipeRepository.GetById(id);
+            var recipe = _recipeService.GetRecipeById(id);
             if (recipe == null)
             {
                 return NotFound();
@@ -50,7 +52,7 @@ namespace FlavorFind.Controllers
         {
             if (ModelState.IsValid)
             {
-                _recipeRepository.Update(recipe);
+                _recipeService.Update(recipe);
                 return RedirectToAction("Index");
             }
             return View(recipe);
@@ -58,7 +60,7 @@ namespace FlavorFind.Controllers
 
         public IActionResult Delete(int id)
         {
-            var recipe = _recipeRepository.GetById(id);
+            var recipe = _recipeService.GetRecipeById(id);
             if (recipe == null)
             {
                 return NotFound();
@@ -69,7 +71,7 @@ namespace FlavorFind.Controllers
         [HttpPost, ActionName("Delete")]
         public IActionResult DeleteConfirmed(int id)
         {
-            _recipeRepository.Delete(id);
+            _recipeService.Delete(id);
             return RedirectToAction("Index");
         }
     }
