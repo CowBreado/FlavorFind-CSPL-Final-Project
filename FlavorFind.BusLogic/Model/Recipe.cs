@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FlavorFind.BusLogic.Model
 {
-    [Table("Recipes")]
+    [Table("Recipe")]
     public class Recipe
     {
         [Key]

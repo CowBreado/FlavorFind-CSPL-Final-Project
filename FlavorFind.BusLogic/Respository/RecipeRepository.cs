@@ -5,6 +5,6 @@ namespace FlavorFind.BusLogic.Respository
 {
     public class RecipeRepository : GenericRepository<Recipe>
     {
-
+        public RecipeRepository() : base() { }
     }
 }

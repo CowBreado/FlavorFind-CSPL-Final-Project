@@ -12,7 +12,7 @@ namespace CS2ARonaldAbel_MVCPROJECT.BusLogic.Respository
     {
         IDbConnection _connection;
 
-        readonly string connectionString = "Server=DESKTOP-T92MA16\\SQLEXPRESS; Trusted_Connection=True";
+        readonly string connectionString = "Server=DESKTOP-T92MA16\\SQLEXPRESS; Database=FlavorFind;";
 
         public GenericRepository()
         {
@@ -81,18 +81,22 @@ namespace CS2ARonaldAbel_MVCPROJECT.BusLogic.Respository
         }
         public IEnumerable<T> GetAll()
         {
-            IEnumerable<T> result = null;
             try
             {
                 string tableName = GetTableName();
+                Console.WriteLine($"Table Name: {tableName}");
                 string query = $"SELECT * FROM {tableName}";
 
-                result = _connection.Query<T>(query);
+                var result = _connection.Query<T>(query);
+                return result ?? Enumerable.Empty<T>();
             }
-            catch (Exception ex) { }
-
-            return result;
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error in GetAll: " + ex.Message);
+                return Enumerable.Empty<T>(); // Return an empty list instead of null
+            }
         }
+
         public T GetById(int id)
         {
 
