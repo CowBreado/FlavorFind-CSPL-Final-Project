@@ -25,7 +25,7 @@ namespace FlavorFind.Controllers
         {
             if (email == "admin@example.com" && password == "1234")
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Recipe");
             }
 
             ViewBag.Error = "Invalid credentials.";
