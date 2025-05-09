@@ -21,12 +21,10 @@ namespace FlavorFind.Controllers
         [HttpPost]
         public async Task<ActionResult> Index(RecipeRequest model)
         {
-            string prompt = $@"
-                You are a recipe assistant. …
-                Recommend 1 simple recipe with estimated cost and easy‑to‑follow instructions.
-                Output strictly valid JSON with keys:
-                Name, Description, Ingredients, Instructions, Category
-                ";
+            string prompt = $"You are a recipe assistant. The user has a budget of ₱{model.Budget}, available ingredients: {model.Ingredients}, and preferences: {model.Preferences}. " +
+                            $"The recipe should be for a {model.DishType} dish intended for {model.MealTime}. " +
+                            $"Recommend 1 simple recipes with estimated cost and easy-to-follow instructions. " + 
+                            "Provide name, description, ingredients, instruction and category section";
 
 
             string rawResponse = await CallGroqLLM(prompt);
