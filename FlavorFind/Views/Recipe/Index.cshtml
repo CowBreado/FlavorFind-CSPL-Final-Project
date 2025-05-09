@@ -1,0 +1,36 @@
+﻿@model IEnumerable<FlavorFind.BusLogic.Model.Recipe>
+
+<h2>Recipes</h2>
+<a asp-action="Create" class="btn btn-primary">Add New Recipe</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            foreach (var recipe in Model)
+            {
+                <tr>
+                    <td>@recipe.Name</td>
+                    <td>@recipe.Category</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@recipe.Id" class="btn btn-warning">Edit</a>
+                        <a asp-action="Delete" asp-route-id="@recipe.Id" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="3">No recipes found.</td>
+            </tr>
+        }
+    </tbody>
+</table>
