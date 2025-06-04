@@ -16,7 +16,7 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
         options.SlidingExpiration = true; // Renew cookie on activity
     });
 
-// If you need session for other purposes (not primarily for auth state with cookies)
+
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>
 {

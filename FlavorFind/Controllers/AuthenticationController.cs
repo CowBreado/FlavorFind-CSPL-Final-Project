@@ -122,10 +122,12 @@ namespace FlavorFind.Controllers
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             return RedirectToAction("Welcome", "Authentication");
         }
-        
+
         public IActionResult AccessDenied()
         {
             return View(); // Create an AccessDenied.cshtml view
         }
     }
+    
+    
 }
