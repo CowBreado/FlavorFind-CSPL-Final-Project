@@ -10,9 +10,9 @@ namespace FlavorFind.BusLogic.Respository
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
-        IDbConnection _connection;
+        public IDbConnection _connection;
 
-        readonly string connectionString = "Server=DESKTOP-T92MA16\\SQLEXPRESS; Database=FlavorFind; Trusted_Connection=True;";
+        readonly string connectionString = "Server=db20956.public.databaseasp.net; Database=db20956; User Id=db20956; Password=fW@73oQ-H#h6; Encrypt=True; TrustServerCertificate=True; MultipleActiveResultSets=True;";
 
 
         public GenericRepository()

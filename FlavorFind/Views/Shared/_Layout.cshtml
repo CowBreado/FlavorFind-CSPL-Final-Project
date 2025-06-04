@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using System.Security.Claims
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -14,11 +16,37 @@
         <aside class="sidebar d-flex flex-column align-items-center justify-content-between p-3 text-white">
             <img src="~/images/logo.svg" alt="Logo" class="mb-4" style="width: 40px;" />
             <nav class="nav flex-column text-center w-100">
-                <a class="nav-link text-white" asp-controller="Recipe" asp-action="Index" title="Home"><img src="~/images/home-logo.svg" alt="Logo" style="width: 46px;" /></a>
-                <a class="nav-link text-white" asp-controller="AIRecipe" asp-action="Index" title="FlavorBot"><img src="~/images/flavorbot-logo.svg" alt="Logo" style="width: 31px;" /></a>
-                <a class="nav-link text-white" asp-controller="Recipe" asp-action="Create" title="New Recipe"><img src="~/images/add-recipe-logo.svg" alt="Logo"  style="width: 46px;" /></a>
+                @if (User.Identity != null && User.Identity.IsAuthenticated)
+                {
+                    <a class="nav-link text-white" asp-controller="Recipe" asp-action="Index" title="Home"><img src="~/images/home-logo.svg" alt="Home" style="width: 46px;" /></a>
+                    <a class="nav-link text-white" asp-controller="AIRecipe" asp-action="Index" title="FlavorBot"><img src="~/images/flavorbot-logo.svg" alt="FlavorBot" style="width: 31px;" /></a>
+                    <a class="nav-link text-white" asp-controller="Recipe" asp-action="Create" title="New Recipe"><img src="~/images/add-recipe-logo.svg" alt="New Recipe" style="width: 46px;" /></a>
+                }
+                else
+                {
+                    <a class="nav-link text-white" asp-controller="Authentication" asp-action="Welcome" title="Welcome"><img src="~/images/home-logo.svg" alt="Welcome" style="width: 46px;" /></a>
+                }
             </nav>
-            <a class="nav-link text-white" asp-controller="Authentication" asp-action="Welcome" title="logOut"><img src="~/images/exit-outline.svg" alt="Logo" style="width: 46px;" /></a>
+
+            @if (User.Identity != null && User.Identity.IsAuthenticated)
+            {
+                <div class="mt-auto text-center">
+                    <span class="d-block text-white small mb-2">Hello, @User.FindFirstValue(ClaimTypes.Name)</span>
+                    <form asp-controller="Authentication" asp-action="Logout" method="post" id="logoutForm">
+                        @Html.AntiForgeryToken()
+                        <a href="javascript:document.getElementById('logoutForm').submit()" class="nav-link text-white" title="Logout">
+                            <img src="~/images/exit-outline.svg" alt="Logout" style="width: 46px;" />
+                        </a>
+                    </form>
+                </div>
+            }
+            else
+            {
+                <div class="mt-auto text-center">
+                    <a class="nav-link text-white d-block mb-2" asp-controller="Authentication" asp-action="Login" title="Login">Login</a>
+                    <a class="nav-link text-white d-block" asp-controller="Authentication" asp-action="Register" title="Register">Register</a>
+                </div>
+            }
         </aside>
 
         <!-- Main content -->
